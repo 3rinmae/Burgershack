@@ -1,5 +1,6 @@
 import { fakeDb } from "../db/FakeDb.js"
 import { Burger } from "../models/Burger.js"
+import { BadRequest } from "../utils/Errors.js"
 
 
 
@@ -21,6 +22,14 @@ class BurgersService {
     const newBurger = new Burger(burgerData)
     await fakeDb.burgers.push(newBurger)
     return newBurger
+  }
+
+  async removeBurger(burgerId) {
+    const burgerIndex = fakeDb.burgers.findIndex(burger => burger.id == burgerId)
+    if (burgerIndex == -1) {
+      throw new BadRequest(`Invalid ID: ${burgerId}`)
+    }
+    await fakeDb.burgers.splice(burgerIndex, 1)
   }
 }
 
