@@ -4,7 +4,7 @@ export class Burger {
     this.name = data.name
     this.price = data.price
     this.meat = data.meat
-    this.wrap = data.bun
+    this.wrap = data.wrap
     this.hasCheese = data.hasCheese
     this.hasBacon = data.hasBacon
   }
